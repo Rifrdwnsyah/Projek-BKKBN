@@ -118,7 +118,7 @@ st.markdown(
         width: 270px !important; min-width: 270px !important;
         background: var(--surface); border-right: 1px solid var(--border);
     }
-    [data-testid="stSidebarContent"] { padding: 1.25rem .85rem; }
+    [data-testid="stSidebarContent"] { padding: .65rem .85rem 1.25rem; }
     .sidebar-brand {
         position: sticky; top: 0; z-index: 4;
         background: var(--surface);
@@ -149,8 +149,9 @@ st.markdown(
         to { opacity: 1; transform: translateX(0) scale(1); }
     }
     [data-testid="stSidebar"] [data-testid="stRadio"] input { accent-color: var(--brand); }
+    .app-header-spacer { height: 5.25rem; margin-bottom: 1.65rem; }
     .app-header {
-        position: sticky; top: .75rem; z-index: 20;
+        position: fixed !important; top: .75rem; left: calc(270px + 1.25rem); right: 1.25rem; z-index: 100;
         min-height: 64px; margin-bottom: 1.65rem; padding: 0 1.5rem;
         border-radius: 14px; background: var(--brand);
         box-shadow: 0 10px 24px rgba(78, 154, 211, .22); color: #FFF;
@@ -279,8 +280,25 @@ st.markdown(
         position: fixed !important; top: .75rem !important; left: .75rem !important;
         z-index: 30 !important; padding: 0 !important;
     }
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapsedControl"] button {
+        width: auto !important; min-width: 4.35rem !important;
+        padding: 0 .55rem !important; gap: .3rem !important;
+        justify-content: center !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button::after {
+        content: "Tutup"; font-size: .68rem; font-weight: 750;
+    }
+    [data-testid="stSidebarCollapsedControl"] button::after {
+        content: "Buka"; font-size: .68rem; font-weight: 750;
+    }
+    [data-testid="stSidebarCollapseButton"] button svg,
+    [data-testid="stSidebarCollapsedControl"] button svg {
+        width: 13px !important; height: 13px !important;
+    }
     @media (max-width: 1100px) {
         [data-testid="stSidebar"] { width: 240px !important; min-width: 240px !important; }
+        .app-header { left: calc(240px + 1rem); right: 1rem; }
         [data-testid="stAppViewContainer"] > .main .block-container {
             padding-left: 1.35rem; padding-right: 1.35rem;
         }
@@ -293,7 +311,7 @@ st.markdown(
 
 def render_page_header(title, meta):
     st.markdown(
-        f'<div class="app-header"><strong>{title}</strong><span>{meta}</span></div>',
+        f'<div class="app-header-spacer" aria-hidden="true"></div><div class="app-header"><strong>{title}</strong><span>{meta}</span></div>',
         unsafe_allow_html=True
     )
 
