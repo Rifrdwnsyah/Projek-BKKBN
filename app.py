@@ -687,7 +687,7 @@ if role == "Pegawai":
                 )
 
                 progress_text.write(
-                    "📁 Menyiapkan dokumen..."
+                    "Menyiapkan dokumen..."
                 )
 
 
@@ -710,7 +710,7 @@ if role == "Pegawai":
                 )
 
                 progress_text.write(
-                    "🔍 Membaca isi dokumen..."
+                    "Membaca isi dokumen..."
                 )
 
                 status_box.info(
@@ -734,7 +734,7 @@ if role == "Pegawai":
                 )
 
                 progress_text.write(
-                    "✅ Dokumen berhasil dibaca."
+                    "Dokumen berhasil dibaca."
                 )
 
                 status_box.empty()
@@ -749,7 +749,7 @@ if role == "Pegawai":
                 )
 
                 progress_text.write(
-                    "🧠 Memeriksa kesesuaian dokumen..."
+                    "Memeriksa kesesuaian dokumen..."
                 )
 
 
@@ -773,7 +773,7 @@ if role == "Pegawai":
                 )
 
                 progress_text.write(
-                    "✅ Pemeriksaan dokumen selesai."
+                    "Pemeriksaan dokumen selesai."
                 )
 
 
@@ -911,7 +911,7 @@ if role == "Pegawai":
                     if valid:
 
                         st.success(
-                            "✅ Dokumen Anda telah diajukan "
+                            "Dokumen Anda telah diajukan "
                             "kepada admin untuk ditinjau "
                             "lebih lanjut."
                         )
@@ -920,7 +920,7 @@ if role == "Pegawai":
                     else:
 
                         st.error(
-                            "❌ Maaf, dokumen Anda "
+                            "Maaf, dokumen Anda "
                             "tidak dapat diajukan."
                         )
 
@@ -933,7 +933,7 @@ if role == "Pegawai":
             except Exception as e:
 
                 progress_text.write(
-                    "❌ Proses gagal."
+                    "Proses gagal."
                 )
 
                 status_box.empty()
@@ -961,15 +961,6 @@ if role == "Pegawai":
 # ============================================================
 
 elif role == "Admin":
-
-    st.title(
-        "🛡️ Verifikasi Admin"
-    )
-
-    st.write(
-        "Halaman ini digunakan untuk melihat seluruh "
-        "dokumen pengajuan dan hasil pemeriksaan otomatis."
-    )
 
 
     # ========================================================
@@ -1021,12 +1012,25 @@ elif role == "Admin":
     )
 
 
+    render_page_header(
+        "Ruang Verifikasi",
+        f"{total} dokumen tercatat"
+    )
+
+    render_intro(
+        "DASHBOARD ADMIN",
+        "Verifikasi dokumen",
+        "Pantau status dan tinjau hasil pemeriksaan otomatis."
+    )
+
+
     # ========================================================
     # METRIC
     # ========================================================
 
     col1, col2, col3, col4, col5 = st.columns(
-        5
+        5,
+        gap="small"
     )
 
 
@@ -1063,7 +1067,12 @@ elif role == "Admin":
     # FILTER
     # ========================================================
 
-    filter_status = st.selectbox(
+    filter_col, result_col = st.columns(
+        [0.45, 0.55],
+        gap="large"
+    )
+
+    filter_status = filter_col.selectbox(
         "Filter Status Pengajuan",
         [
             "Semua",
@@ -1120,6 +1129,12 @@ elif role == "Admin":
             target_status
         ]
 
+    result_col.markdown(
+        f'<div class="result-count">Menampilkan '
+        f'<strong>{len(data_pengajuan)} dokumen</strong></div>',
+        unsafe_allow_html=True
+    )
+
 
     # ========================================================
     # BELUM ADA DATA
@@ -1137,13 +1152,6 @@ elif role == "Admin":
     # ========================================================
 
     else:
-
-        st.write(
-            f"Menampilkan "
-            f"**{len(data_pengajuan)} dokumen**"
-        )
-
-
         for item in data_pengajuan:
 
             # =================================================
@@ -1167,7 +1175,7 @@ elif role == "Admin":
                 "MENUNGGU VERIFIKASI ADMIN"
             ):
 
-                status_icon = "🟡"
+                status_icon = "Menunggu"
 
 
             elif (
@@ -1176,19 +1184,18 @@ elif role == "Admin":
                 "DITERIMA ADMIN"
             ):
 
-                status_icon = "🟢"
+                status_icon = "Diterima"
 
 
             else:
 
-                status_icon = "🔴"
+                status_icon = "Ditolak"
 
 
             title = (
-                f"{status_icon} "
-                f"{item['kategori']} | "
-                f"{item['nama_file']} | "
-                f"{item['status']}"
+                f"{item['nama_file']}  |  "
+                f"{item['kategori']}  |  "
+                f"{status_icon}"
             )
 
 
@@ -1297,7 +1304,7 @@ elif role == "Admin":
                 # =============================================
 
                 with st.expander(
-                    "🔎 Data Hasil Ekstraksi"
+                    "Data Hasil Ekstraksi"
                 ):
 
                     st.json(
@@ -1312,7 +1319,7 @@ elif role == "Admin":
                 if item["similarity"]:
 
                     with st.expander(
-                        "📊 Hasil Similarity"
+                        "Hasil Similarity"
                     ):
 
                         st.json(
@@ -1325,7 +1332,7 @@ elif role == "Admin":
                 # =============================================
 
                 with st.expander(
-                    "📝 Hasil OCR"
+                    "Hasil OCR"
                 ):
 
                     st.text(
@@ -1343,7 +1350,7 @@ elif role == "Admin":
 
 
                 st.write(
-                    "📄",
+                    "**Nama File:**",
                     item["nama_file"]
                 )
 
@@ -1369,7 +1376,7 @@ elif role == "Admin":
                 ]:
 
                     if st.button(
-                        "📄 Akses Dokumen Asli",
+                        "Akses Dokumen Asli",
 
                         key=(
                             f"open_pdf_"
@@ -1402,7 +1409,7 @@ elif role == "Admin":
 
                         st.download_button(
                             label=(
-                                "⬇️ Download PDF"
+                                "Download PDF"
                             ),
 
                             data=item[
@@ -1429,7 +1436,7 @@ elif role == "Admin":
                     with pdf_col2:
 
                         if st.button(
-                            "❌ Tutup Akses PDF",
+                            "Tutup Akses PDF",
 
                             key=(
                                 f"close_pdf_"
@@ -1486,7 +1493,7 @@ elif role == "Admin":
                     with col_terima:
 
                         if st.button(
-                            "✅ Terima Dokumen",
+                            "Terima Dokumen",
 
                             key=(
                                 f"terima_"
@@ -1538,7 +1545,7 @@ elif role == "Admin":
                     with col_tolak:
 
                         if st.button(
-                            "❌ Tolak Dokumen",
+                            "Tolak Dokumen",
 
                             key=(
                                 f"tolak_"
@@ -1616,7 +1623,7 @@ elif role == "Admin":
                     st.divider()
 
                     st.success(
-                        "✅ Dokumen telah diterima "
+                        "Dokumen telah diterima "
                         "oleh admin."
                     )
 
@@ -1635,7 +1642,7 @@ elif role == "Admin":
                     st.divider()
 
                     st.error(
-                        "❌ Dokumen telah ditolak "
+                        "Dokumen telah ditolak "
                         "oleh admin."
                     )
 
