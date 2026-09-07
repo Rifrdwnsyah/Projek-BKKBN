@@ -318,6 +318,17 @@ st.markdown(
     [data-testid="stSidebarCollapsedControl"] button:hover {
         border-color: var(--brand-hover) !important; background: var(--brand-hover) !important;
         color: #FFF !important;
+    }    .sidebar-collapse-visibility-fix { }
+    [data-testid="stSidebarCollapseButton"] {
+        display: none !important;
+    }
+    [data-testid="stSidebar"] [data-testid="stSidebarCollapseButton"] {
+        display: flex !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapsedControl"] button {
+        transition: none !important; animation: none !important;
+        transform: none !important;
     }    @media (max-width: 1100px) {
         [data-testid="stSidebar"] { width: 240px !important; min-width: 240px !important; }
         .app-header { left: calc(240px + 1rem); right: 1rem; }
