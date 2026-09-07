@@ -11,9 +11,10 @@ from pipeline import run_pipeline
 # ============================================================
 
 st.set_page_config(
-    page_title="Document Validator BKKBN",
+    page_title="Validasi Dokumen Kepegawaian",
     page_icon="📄",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # ============================================================
@@ -98,6 +99,190 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    :root {
+        --brand: #4E9AD3; --brand-hover: #3D86BE; --brand-soft: #EAF4FB;
+        --canvas: #F5F8FB; --surface: #FFFFFF; --text: #17324D;
+        --muted: #6F8194; --border: #DFE8F0;
+        --shadow: 0 8px 24px rgba(31, 71, 103, .08);
+    }
+    html, body, [class*="css"] { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+    .stApp { background: var(--canvas); color: var(--text); }
+    [data-testid="stHeader"] { background: transparent; }
+    [data-testid="stAppViewContainer"] > .main .block-container {
+        max-width: 1480px; padding: 1.5rem 2.25rem 3rem;
+    }
+    [data-testid="stSidebar"] {
+        width: 270px !important; min-width: 270px !important;
+        background: var(--surface); border-right: 1px solid var(--border);
+    }
+    [data-testid="stSidebarContent"] { padding: 1.25rem .85rem; }
+    .sidebar-brand {
+        margin: .2rem .55rem 1.6rem; padding: 0 .25rem 1.35rem;
+        border-bottom: 1px solid #EDF2F6; color: var(--text);
+        font-size: 1.15rem; font-weight: 800; line-height: 1.25;
+        letter-spacing: -.02em;
+    }
+    .sidebar-label {
+        margin: 0 .8rem .55rem; color: #93A2B2; font-size: .7rem;
+        font-weight: 800; letter-spacing: .12em;
+    }
+    [data-testid="stSidebar"] [data-testid="stRadio"] > div { gap: .35rem; }
+    [data-testid="stSidebar"] [data-testid="stRadio"] label {
+        min-height: 2.85rem; padding: .7rem .85rem; border-radius: 10px;
+        color: var(--muted); font-weight: 650; transition: all .18s ease;
+    }
+    [data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+        color: var(--brand-hover); background: #F4F9FD;
+    }
+    [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
+        color: var(--brand-hover); background: var(--brand-soft);
+        box-shadow: inset 3px 0 0 var(--brand);
+    }
+    [data-testid="stSidebar"] [data-testid="stRadio"] input { accent-color: var(--brand); }
+    .app-header {
+        min-height: 64px; margin-bottom: 1.65rem; padding: 0 1.5rem;
+        border-radius: 14px; background: var(--brand);
+        box-shadow: 0 10px 24px rgba(78, 154, 211, .22); color: #FFF;
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .app-header strong { font-size: 1.02rem; font-weight: 800; }
+    .app-header span { font-size: .82rem; font-weight: 500; opacity: .88; }
+    .page-intro { margin: .15rem 0 1.2rem; }
+    .page-intro .eyebrow {
+        margin-bottom: .35rem; color: var(--brand-hover); font-size: .72rem;
+        font-weight: 800; letter-spacing: .12em;
+    }
+    .page-intro h1 {
+        margin: 0; color: var(--text); font-size: clamp(1.75rem, 2.4vw, 2.35rem);
+        font-weight: 800; line-height: 1.16; letter-spacing: -.035em;
+    }
+    .page-intro p {
+        max-width: 720px; margin: .55rem 0 0; color: var(--muted);
+        font-size: .96rem; line-height: 1.65;
+    }
+    .workflow-steps {
+        display: flex; align-items: center; gap: .65rem; margin: 0 0 1.35rem;
+        color: var(--muted); font-size: .78rem; font-weight: 700;
+    }
+    .workflow-step { display: inline-flex; align-items: center; gap: .45rem; }
+    .workflow-step b {
+        width: 1.55rem; height: 1.55rem; border-radius: 999px;
+        background: var(--brand); color: #FFF; display: inline-grid;
+        place-items: center; font-size: .72rem;
+    }
+    .workflow-line { width: 2.5rem; height: 1px; background: #C9DAE7; }
+    .section-heading { margin-bottom: .2rem; color: var(--text); font-size: 1.05rem; font-weight: 800; }
+    .section-copy { margin-bottom: .85rem; color: var(--muted); font-size: .82rem; line-height: 1.55; }
+    h1, h2, h3 { color: var(--text); letter-spacing: -.02em; }
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        border-color: var(--border) !important; border-radius: 14px !important;
+        background: var(--surface); box-shadow: var(--shadow);
+    }
+    [data-testid="stWidgetLabel"] p { color: #53697D; font-size: .85rem; font-weight: 700; }
+    [data-baseweb="select"] > div, [data-testid="stTextInput"] input,
+    [data-testid="stTextArea"] textarea {
+        border-color: #D7E2EB !important; border-radius: 9px !important;
+        background: #FFF !important; color: var(--text) !important;
+    }
+    [data-baseweb="select"] > div:focus-within, [data-testid="stTextInput"] input:focus,
+    [data-testid="stTextArea"] textarea:focus {
+        border-color: var(--brand) !important;
+        box-shadow: 0 0 0 3px rgba(78, 154, 211, .14) !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <style>
+    div.stButton > button, div[data-testid="stButton"] > button,
+    [data-testid="stDownloadButton"] > button {
+        min-height: 2.65rem; border-radius: 9px; border-color: #C9D9E5;
+        color: #3F5A70; font-weight: 750; transition: all .18s ease;
+    }
+    div.stButton > button:hover, div[data-testid="stButton"] > button:hover,
+    [data-testid="stDownloadButton"] > button:hover {
+        border-color: var(--brand); color: var(--brand-hover); background: #F7FBFE;
+    }
+    div.stButton > button[kind="primary"] {
+        border-color: var(--brand); background: var(--brand); color: #FFF;
+        box-shadow: 0 6px 14px rgba(78, 154, 211, .2);
+    }
+    div.stButton > button[kind="primary"]:hover {
+        border-color: var(--brand-hover); background: var(--brand-hover); color: #FFF;
+    }
+    div.stButton > button:disabled { cursor: not-allowed; opacity: .52; }
+    [data-testid="stFileUploader"] { padding: 0; border: 0; background: transparent; }
+    [data-testid="stFileUploaderDropzone"] {
+        min-height: 9.2rem; border: 1.5px dashed #99C8E8;
+        border-radius: 12px; background: #F8FCFF;
+    }
+    [data-testid="stFileUploaderDropzone"]:hover {
+        border-color: var(--brand); background: #F2F9FD;
+    }
+    [data-testid="stFileUploaderDropzone"] svg { display: block; color: var(--brand); }
+    [data-testid="stProgress"] > div > div { background: var(--brand); }
+    [data-testid="stMetric"] {
+        min-height: 112px; padding: 1rem 1.05rem; border: 1px solid var(--border);
+        border-radius: 13px; background: var(--surface);
+        box-shadow: 0 5px 18px rgba(31, 71, 103, .055);
+    }
+    [data-testid="stMetricValue"] { color: var(--text); font-weight: 800; }
+    [data-testid="stMetricLabel"] { color: var(--muted); font-weight: 700; }
+    [data-testid="stExpander"] {
+        margin-bottom: .75rem; overflow: hidden; border: 1px solid var(--border);
+        border-radius: 12px; background: var(--surface);
+        box-shadow: 0 4px 14px rgba(31, 71, 103, .04);
+    }
+    [data-testid="stAlert"] { border-radius: 11px; border-width: 1px; }
+    .uploaded-file-card {
+        margin: .35rem 0 .8rem; padding: .95rem 1rem;
+        border: 1px solid #B9D9EE; border-radius: 11px;
+        background: var(--brand-soft); color: var(--text);
+    }
+    .uploaded-file-card small { color: var(--muted); }
+    .result-count { margin: .45rem 0 .9rem; color: var(--muted); font-size: .86rem; }
+    .status-waiting { color: #966515; }
+    .status-approved { color: #18754B; }
+    .status-rejected { color: #B43E49; }
+    hr { border-color: var(--border) !important; }
+    @media (max-width: 1100px) {
+        [data-testid="stSidebar"] { width: 240px !important; min-width: 240px !important; }
+        [data-testid="stAppViewContainer"] > .main .block-container {
+            padding-left: 1.35rem; padding-right: 1.35rem;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+def render_page_header(title, meta):
+    st.markdown(
+        f'<div class="app-header"><strong>{title}</strong><span>{meta}</span></div>',
+        unsafe_allow_html=True
+    )
+
+
+def render_intro(eyebrow, title, description):
+    st.markdown(
+        f"""
+        <section class="page-intro">
+            <div class="eyebrow">{eyebrow}</div>
+            <h1>{title}</h1>
+            <p>{description}</p>
+        </section>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 # ============================================================
 # SESSION STATE
 # ============================================================
@@ -116,14 +301,22 @@ if "uploader_version" not in st.session_state:
 # SIDEBAR
 # ============================================================
 
-st.sidebar.title("📄 Document Validator")
+st.sidebar.markdown(
+    '<div class="sidebar-brand">Validasi Dokumen<br>Kepegawaian</div>',
+    unsafe_allow_html=True
+)
+st.sidebar.markdown(
+    '<div class="sidebar-label">TAMPILAN</div>',
+    unsafe_allow_html=True
+)
 
 role = st.sidebar.radio(
     "Pilih Tampilan",
     [
         "Pegawai",
         "Admin"
-    ]
+    ],
+    label_visibility="collapsed"
 )
 
 
@@ -133,12 +326,49 @@ role = st.sidebar.radio(
 
 if role == "Pegawai":
 
-    st.title("📄 Pengajuan Dokumen")
+    render_page_header(
+        "Ruang Pengajuan",
+        "Sistem validasi dokumen"
+    )
 
-    st.write(
-        "Upload dokumen dan isi detail yang diperlukan. "
-        "Sistem akan melakukan pemeriksaan awal terhadap dokumen "
-        "sebelum dokumen ditinjau lebih lanjut."
+    render_intro(
+        "PENGAJUAN BARU",
+        "Ajukan dokumen kepegawaian",
+        "Lengkapi detail dan unggah PDF untuk memulai "
+        "pemeriksaan awal."
+    )
+
+    st.markdown(
+        """
+        <div class="workflow-steps">
+            <span class="workflow-step"><b>1</b> Detail</span>
+            <span class="workflow-line"></span>
+            <span class="workflow-step"><b>2</b> Dokumen</span>
+            <span class="workflow-line"></span>
+            <span class="workflow-step"><b>3</b> Validasi</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    detail_col, upload_col = st.columns(
+        [1.2, 0.8],
+        gap="large"
+    )
+
+    detail_panel = detail_col.container(
+        border=True
+    )
+
+    upload_panel = upload_col.container(
+        border=True
+    )
+
+    detail_panel.markdown(
+        '<div class="section-heading">Detail Dokumen</div>'
+        '<div class="section-copy">Isi data sesuai dengan dokumen '
+        'yang akan diunggah.</div>',
+        unsafe_allow_html=True
     )
 
 
@@ -146,7 +376,7 @@ if role == "Pegawai":
     # CATEGORY
     # ========================================================
 
-    kategori = st.selectbox(
+    kategori = detail_panel.selectbox(
         "Pilih Kategori Dokumen",
         [
             "Kursus",
@@ -172,16 +402,16 @@ if role == "Pegawai":
 
     if kategori == "Kursus":
 
-        st.subheader(
+        detail_panel.subheader(
             "Detail Kursus"
         )
 
-        tanggal_kursus = st.text_input(
+        tanggal_kursus = detail_panel.text_input(
             "Tanggal Kursus",
             placeholder="Contoh: 13-04-2015"
         )
 
-        tanggal_selesai = st.text_input(
+        tanggal_selesai = detail_panel.text_input(
             "Tanggal Selesai Kursus",
             placeholder="Contoh: 17-04-2015"
         )
@@ -198,11 +428,11 @@ if role == "Pegawai":
 
     elif kategori == "Diklat":
 
-        st.subheader(
+        detail_panel.subheader(
             "Detail Diklat"
         )
 
-        tanggal = st.text_input(
+        tanggal = detail_panel.text_input(
             "Tanggal Diklat",
             placeholder="Contoh: 13-08-2022"
         )
@@ -218,11 +448,11 @@ if role == "Pegawai":
 
     elif kategori == "Jabatan":
 
-        st.subheader(
+        detail_panel.subheader(
             "Detail Jabatan"
         )
 
-        jabatan = st.text_input(
+        jabatan = detail_panel.text_input(
             "Jabatan Fungsional Umum",
             placeholder=(
                 "Contoh: Kepala Bidang "
@@ -230,7 +460,7 @@ if role == "Pegawai":
             )
         )
 
-        nomor_sk = st.text_input(
+        nomor_sk = detail_panel.text_input(
             "Nomor SK",
             placeholder=(
                 "Contoh: 338/KP.05.01/PEG/2018"
@@ -249,11 +479,11 @@ if role == "Pegawai":
 
     elif kategori == "Golongan":
 
-        st.subheader(
+        detail_panel.subheader(
             "Detail Golongan"
         )
 
-        golongan = st.text_input(
+        golongan = detail_panel.text_input(
             "Golongan",
             placeholder="Contoh: II/c"
         )
@@ -269,11 +499,11 @@ if role == "Pegawai":
 
     elif kategori == "PNS":
 
-        st.subheader(
+        detail_panel.subheader(
             "Dokumen PNS"
         )
 
-        st.info(
+        detail_panel.info(
             "Silakan upload dokumen pengangkatan "
             "Pegawai Negeri Sipil."
         )
@@ -287,11 +517,11 @@ if role == "Pegawai":
 
     elif kategori == "CPNS":
 
-        st.subheader(
+        detail_panel.subheader(
             "Dokumen CPNS"
         )
 
-        st.info(
+        detail_panel.info(
             "Silakan upload dokumen pengangkatan "
             "Calon Pegawai Negeri Sipil."
         )
@@ -303,10 +533,17 @@ if role == "Pegawai":
     # FILE UPLOAD
     # ========================================================
 
+    upload_panel.markdown(
+        '<div class="section-heading">Unggah Dokumen</div>'
+        '<div class="section-copy">Gunakan satu berkas PDF untuk '
+        'setiap pengajuan.</div>',
+        unsafe_allow_html=True
+    )
+
     if st.session_state.uploaded_pdf is None:
 
-        uploaded_file = st.file_uploader(
-            "Upload Dokumen PDF",
+        uploaded_file = upload_panel.file_uploader(
+            "Dokumen PDF",
             type=["pdf"],
             accept_multiple_files=False,
             key=f"pdf_uploader_{st.session_state.uploader_version}"
@@ -330,25 +567,25 @@ if role == "Pegawai":
             uploaded_file["size"] / (1024 * 1024)
         )
 
-        st.markdown(
+        upload_panel.markdown(
             f"""
             <div class="uploaded-file-card">
-                <b>📄 {uploaded_file["name"]}</b><br>
+                <b>{uploaded_file["name"]}</b><br>
                 <small>{file_size_mb:.2f} MB</small>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-        if st.button(
-            "🗑️ Hapus File"
+        if upload_panel.button(
+            "Hapus File"
         ):
 
             st.session_state.uploaded_pdf = None
             st.session_state.uploader_version += 1
             st.rerun()
 
-        st.caption(
+        upload_panel.caption(
             "Untuk mengganti dokumen, hapus file ini terlebih dahulu."
         )
 
@@ -359,11 +596,13 @@ if role == "Pegawai":
 
     ui_lock = st.empty()
 
-    if st.button(
-        "🔍 Validasi dan Ajukan Dokumen",
+    submit_clicked = upload_panel.button(
+        "Validasi & Ajukan Dokumen",
         type="primary",
         use_container_width=True
-    ):
+    )
+
+    if submit_clicked:
 
         if st.session_state.uploaded_pdf is None:
 
