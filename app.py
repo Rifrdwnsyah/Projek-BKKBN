@@ -296,7 +296,29 @@ st.markdown(
     [data-testid="stSidebarCollapsedControl"] button svg {
         width: 13px !important; height: 13px !important;
     }
-    @media (max-width: 1100px) {
+    .sidebar-toggle-brand { }
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapsedControl"] button {
+        width: 2.15rem !important; min-width: 2.15rem !important;
+        height: 2.15rem !important; min-height: 2.15rem !important;
+        padding: 0 !important; border: 1px solid var(--brand) !important;
+        border-radius: 8px !important; background: var(--brand) !important;
+        color: #FFF !important; box-shadow: 0 5px 13px rgba(78, 154, 211, .24) !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button::after,
+    [data-testid="stSidebarCollapsedControl"] button::after {
+        content: none !important; display: none !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button svg,
+    [data-testid="stSidebarCollapsedControl"] button svg {
+        width: 15px !important; height: 15px !important;
+        color: #FFF !important; stroke: #FFF !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button:hover,
+    [data-testid="stSidebarCollapsedControl"] button:hover {
+        border-color: var(--brand-hover) !important; background: var(--brand-hover) !important;
+        color: #FFF !important;
+    }    @media (max-width: 1100px) {
         [data-testid="stSidebar"] { width: 240px !important; min-width: 240px !important; }
         .app-header { left: calc(240px + 1rem); right: 1rem; }
         [data-testid="stAppViewContainer"] > .main .block-container {
