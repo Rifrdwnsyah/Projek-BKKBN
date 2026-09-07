@@ -120,6 +120,8 @@ st.markdown(
     }
     [data-testid="stSidebarContent"] { padding: 1.25rem .85rem; }
     .sidebar-brand {
+        position: sticky; top: 0; z-index: 4;
+        background: var(--surface);
         margin: .2rem .55rem 1.6rem; padding: 0 .25rem 1.35rem;
         border-bottom: 1px solid #EDF2F6; color: var(--text);
         font-size: 1.15rem; font-weight: 800; line-height: 1.25;
@@ -135,14 +137,20 @@ st.markdown(
         color: var(--muted); font-weight: 650; transition: all .18s ease;
     }
     [data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
-        color: var(--brand-hover); background: #F4F9FD;
+        color: var(--brand-hover); background: #F4F9FD; transform: translateX(3px);
     }
     [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
         color: var(--brand-hover); background: var(--brand-soft);
         box-shadow: inset 3px 0 0 var(--brand);
+        animation: role-card-select .24s ease-out both;
+    }
+    @keyframes role-card-select {
+        from { opacity: .72; transform: translateX(-4px) scale(.985); }
+        to { opacity: 1; transform: translateX(0) scale(1); }
     }
     [data-testid="stSidebar"] [data-testid="stRadio"] input { accent-color: var(--brand); }
     .app-header {
+        position: sticky; top: .75rem; z-index: 20;
         min-height: 64px; margin-bottom: 1.65rem; padding: 0 1.5rem;
         border-radius: 14px; background: var(--brand);
         box-shadow: 0 10px 24px rgba(78, 154, 211, .22); color: #FFF;
@@ -251,6 +259,26 @@ st.markdown(
     .status-approved { color: #18754B; }
     .status-rejected { color: #B43E49; }
     hr { border-color: var(--border) !important; }
+    [data-testid="stSidebarCollapseButton"] {
+        position: absolute !important; top: .65rem; right: .7rem; z-index: 30;
+    }
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapsedControl"] button {
+        width: 2rem !important; min-width: 2rem !important;
+        height: 2rem !important; min-height: 2rem !important;
+        padding: 0 !important; border: 1px solid var(--border) !important;
+        border-radius: 8px !important; background: var(--surface) !important;
+        color: var(--muted) !important; box-shadow: 0 3px 10px rgba(31, 71, 103, .08) !important;
+    }
+    [data-testid="stSidebarCollapseButton"] button:hover,
+    [data-testid="stSidebarCollapsedControl"] button:hover {
+        border-color: var(--brand) !important; color: var(--brand-hover) !important;
+        background: var(--brand-soft) !important;
+    }
+    [data-testid="stSidebarCollapsedControl"] {
+        position: fixed !important; top: .75rem !important; left: .75rem !important;
+        z-index: 30 !important; padding: 0 !important;
+    }
     @media (max-width: 1100px) {
         [data-testid="stSidebar"] { width: 240px !important; min-width: 240px !important; }
         [data-testid="stAppViewContainer"] > .main .block-container {
