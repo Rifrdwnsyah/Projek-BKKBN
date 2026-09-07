@@ -51,13 +51,14 @@ Perubahan dibatasi pada presentasi antarmuka di `app.py`. Seluruh alur, state, a
 ### Sidebar
 
 - Sidebar putih dengan border kanan tipis.
-- Bagian teratas hanya menampilkan teks **Validasi Dokumen Kepegawaian** tanpa logo atau inisial.
-- Pilihan `Pegawai` dan `Admin` tetap menggunakan radio Streamlit yang sama, tetapi ditata seperti navigasi vertikal.
-- Item aktif memakai latar `#EAF4FB`, teks biru, dan indikator garis `#4E9AD3`.
+- Bagian teratas tetap terlihat saat halaman di-scroll dan hanya menampilkan teks **Validasi Dokumen Kepegawaian** tanpa logo atau inisial.
+- Pilihan `Pegawai` dan `Admin` tetap menggunakan radio Streamlit yang sama, tetapi ditata sebagai dua kartu navigasi vertikal.
+- Item aktif memakai latar `#EAF4FB`, teks biru, dan indikator garis `#4E9AD3`; perpindahan peran memberi transisi singkat pada warna, posisi, dan bayangan kartu tanpa mengubah state atau nilai radio.
+- Satu tombol kecil outline **Tutup** dengan chevron kiri berada di pojok kanan atas sidebar, sejajar dengan nama aplikasi. Saat sidebar tertutup, hanya satu tombol kecil **Buka** dengan chevron kanan yang terlihat di pojok kiri atas area konten. Tidak ada kontrol collapse/expand lain yang tampil bersamaan.
 
 ### Header halaman
 
-- Header horizontal menggunakan warna `#4E9AD3` dengan teks putih.
+- Header horizontal menggunakan warna `#4E9AD3` dengan teks putih dan bersifat sticky di atas area konten ketika halaman di-scroll.
 - Tampilan Pegawai memakai judul konteks **Ruang Pengajuan**.
 - Tampilan Admin memakai judul konteks **Ruang Verifikasi**.
 - Tidak ada kata "BKKBN" di header, sidebar, maupun elemen dekoratif baru.
